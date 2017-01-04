@@ -537,20 +537,18 @@ background-color: rgba(0,0,0,0.5);
 .selfIntro .colBox .leftCol{width: 33.4%; left: 0; border-left: 0 none;  }
 .selfIntro .colBox .centerCol{width: 33.3%; left: 33.4%;  transition-delay: 0.2s;}
 .selfIntro .colBox .rightCol{width: 33.3%; right: 0; transition-delay: 0.4s;}
-.selfIntro .colBox dt{ font-size: 18px; font-family: dotum; font-weight: bold; position: absolute; top: 50%; width: 100%; text-align: center; margin-top: -8px; text-align: center; color: #fff; }
-.selfIntro .colBox dd{ position: absolute; top: 0; width: 100%; right: -100%; height: 100%; padding: 20px 20px 20px 40px;  box-sizing: border-box; line-height: 23px; text-align: justify-all;
-}
+.selfIntro .colBox dl{ position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; }
+.selfIntro .colBox dl > *{ box-sizing: border-box; -webkit-box-sizing: border-box;}
+.selfIntro .colBox dt{float: left;width: 33.3%; font-size: 18px; font-family: dotum; font-weight: bold; text-align: center; margin-top: -8px; text-align: center; color: #fff; }
+.selfIntro .colBox dd{float: right; width: 66.7%;  height: 100%; padding: 20px 20px 20px 40px;  box-sizing: border-box; line-height: 23px; background-color: #fff;}
 .selfIntro .colBox dd p{ margin-bottom: 5px;font-size: 18px;}
-
-
+/* 자기소개서 펼침 */
 .selfIntro .colBox.active.viewTxt > *{ display: none; border: 0 none; cursor: auto;}
-.selfIntro .colBox.active.viewTxt > .active{display: block; width: 100%; left: 0;
-
-  z-index: 10;
-}
-.selfIntro .colBox.active.viewTxt dl{ position: absolute; top: 0; left: 0; width: 100%; height: 100%;overflow: hidden;  cursor: pointer;}
-.selfIntro .colBox.active.viewTxt.se1 > .active dt{ width: 40%; font-size: 30px; margin-top: -15px;}
-.selfIntro .colBox.active.viewTxt.se1 > .active dd{ right: 0; width: 60%; background-color: #fff;}
+.selfIntro .colBox.active.viewTxt > .active{display: block; width: 100%; left: 0; z-index: 10;}
+.selfIntro .colBox.active.viewTxt dl{  width: 100%;   cursor: pointer;}
+.selfIntro .colBox.active.viewTxt.se1 > .active dt{ font-size: 30px; margin-top: -15px;}
+.selfIntro .colBox.active.viewTxt.se1 > .active dd{ }
+.selfIntro .colBox.active.close{}
 
 
 .subPages{ padding-top: 50px; }

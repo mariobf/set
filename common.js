@@ -31,10 +31,7 @@ MinDoc = (function () {
 
 			tag.resume.wrap = tag.container.querySelector('.resume');
 
-			tag.selfIntro.wrap = tag.container.querySelector('.selfIntro');
-			tag.selfIntro.bg = tag.selfIntro.wrap.querySelector('.bgMove .inner');
-			tag.selfIntro.boxCol = tag.selfIntro.wrap.querySelector('.colBox');
-			tag.selfIntro.btns = tag.selfIntro.boxCol.querySelectorAll(':scope > div') ;
+
 
 			tag.career.wrap = tag.container.querySelector('.career');
 			tag.portfolio.wrap = tag.container.querySelector('.portfolio');
@@ -112,6 +109,12 @@ MinDoc = (function () {
 
 	/* 자깃 소개서 배경 */
 	function selfIntroFunc(){
+		tag.selfIntro.wrap = tag.container.querySelector('.selfIntro');
+		tag.selfIntro.bg = tag.selfIntro.wrap.querySelector('.bgMove .inner');
+		tag.selfIntro.boxCol = tag.selfIntro.wrap.querySelector('.colBox');
+		tag.selfIntro.btns = tag.selfIntro.boxCol.querySelectorAll(':scope > div') ;
+		tag.selfIntro.dl = tag.selfIntro.wrap.querySelectorAll('dl');
+		console.log(111)
 		function bgMoveFunc() {
 			var prevX = 0;
 			var prevY = 0;
@@ -132,7 +135,10 @@ MinDoc = (function () {
 
 			tag.selfIntro.wrap.addEventListener('click' , function( e ) {
 				tag.selfIntro.boxCol.classList.add('active');
+				// tag.selfIntro.dl
+				// tag.
 			});
+
 
 			// 백그라운드 효과
 			function moveBg( e ) {
@@ -152,14 +158,17 @@ MinDoc = (function () {
 		bgMoveFunc();
 
 		[].forEach.call(tag.selfIntro.btns , function( bElm, bIdx ){
+
+			bElm.querySelector('dl').style.width = tag.selfIntro.boxCol.offsetWidth + 'px';
 			bElm.addEventListener('click' , function(e){
 				if( tag.selfIntro.boxCol.classList.contains('viewTxt') ){
 					tag.selfIntro.boxCol.classList.remove('viewTxt')
 					bElm.classList.remove('active');
+					bElm.addEventListener(opt.evt.transition , clsoeFunc.apply( , 0));
 					return ;
 				}
 				var prevActive = tag.selfIntro.boxCol.querySelector(':scope > .active');
-				bElm.querySelector('dl').style.width = tag.selfIntro.boxCol.offsetWidth + 'px';
+
 				tag.selfIntro.boxCol.classList.add('se' + (bIdx + 1) );
 				tag.selfIntro.boxCol.classList.add('viewTxt');
 				if(prevActive != null){
@@ -173,6 +182,12 @@ MinDoc = (function () {
 				// }
 			}, false);
 		});
+		function clsoeFunc() {
+			var arg = arguments ;
+			console.log(arg , this);
+			this.removeEventListener(opt.evt.transition , arg.callee)
+
+		}
 	}
 	function starBtn() {
 		console.log('yahoo')
@@ -245,6 +260,14 @@ MinDoc = (function () {
 	MinDoc.prototype.addActive = function( eElm , tarElm , evt , _class  ){
 		var self = this,
 			classNm = _class || 'active'
+		self.callBackFunc = function(){
+			tarElm.classList.add(classNm);
+		};
+		adEvtFun(eElm ,evt, self.callBackFunc);
+	};
+	MinDoc.prototype.addClose = function( eElm , tarElm , evt , _class  ){
+		var self = this,
+			classNm = _class || 'close'
 		self.callBackFunc = function(){
 			tarElm.classList.add(classNm);
 		};
