@@ -164,7 +164,7 @@ MinDoc = (function () {
 				if( tag.selfIntro.boxCol.classList.contains('viewTxt') ){
 					tag.selfIntro.boxCol.classList.remove('viewTxt')
 					bElm.classList.remove('active');
-					bElm.addEventListener(opt.evt.transition , clsoeFunc.apply( , 0));
+					bElm.addEventListener(opt.evt.transition , clsoeFunc.bind(bElm, 0));
 					return ;
 				}
 				var prevActive = tag.selfIntro.boxCol.querySelector(':scope > .active');
@@ -184,7 +184,7 @@ MinDoc = (function () {
 		});
 		function clsoeFunc() {
 			var arg = arguments ;
-			console.log(arg , this);
+			console.log(arg  , '////////////////////////', this);
 			this.removeEventListener(opt.evt.transition , arg.callee)
 
 		}
